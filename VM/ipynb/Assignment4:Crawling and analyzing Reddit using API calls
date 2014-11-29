@@ -1,0 +1,574 @@
+{
+ "metadata": {
+  "name": ""
+ },
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "## Chen Zhu"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### Part 0 (1 pts)\n",
+      "\n",
+      "Complete Assignment #0 :-)\n",
+      "completed!"
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### Part 1 (1 pts)\n",
+      "\n",
+      "Upload a picture in your profile on NYUClasses. \n",
+      "\n",
+      "* Login to NYU Classes\n",
+      "* Select the tab \"My Workspace\" from the top. \n",
+      "* Select \"My profile\" from the side menu on the left, and then upload a picture."
+     ]
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### Part 2 (10 pts)\n",
+      "\n",
+      "In class, we used the IP-API to get our current location. We will now practice various Unix command using the API.\n",
+      "\t\n",
+      "* **a**: Issue an API call to IP-API to get back the JSON file. Store the output in a file named location1.json, using the redirect operator"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl -s http://ip-api.com/json > ../a1/location1.json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [],
+     "prompt_number": 1
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **b**: Issue an API call to IP-API to get back the JSON file. Store the output in a file location2.json using -o option of curl"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl -o ../a1/location2.json http://ip-api.com/json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   307  100   307    0     0    244      0  0:00:01  0:00:01 --:--:--  1306\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **c**: Use the \"rm\" command to delete the file location2.json"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!rm ../a1/location2.json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "rm: remove regular file `../a1/location2.json'? "
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "^C\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **d**: Use the \"mv\" command to rename the file location1.json to location.json"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!mv ../a1/location1.json ../a1/location.json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "mv: cannot stat `../a1/location1.json': No such file or directory\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 15
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **e**: Use the \"cat\" command to type the output of the file location.json"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!cat ../a1/location.json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "{\"as\":\"AS12 New York University\",\"city\":\"New York\",\"country\":\"United States\",\"countryCode\":\"US\",\"isp\":\"New York University\",\"lat\":40.7317,\"lon\":-73.9885,\"org\":\"New York University\",\"query\":\"216.165.95.76\",\"region\":\"NY\",\"regionName\":\"New York\",\"status\":\"success\",\"timezone\":\"America/New_York\",\"zip\":\"10003\"}\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 17
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **f**: Use the \"jq\" command to type the output of the two files, location.json"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!jq . ../a1/location.json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\u001b[37m{\r\n",
+        "  \u001b[0m\u001b[34;1m\"zip\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"10003\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"timezone\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"America/New_York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"status\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"success\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"regionName\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"region\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"NY\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"query\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"216.165.95.76\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"as\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"AS12 New York University\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"city\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"country\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"United States\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"countryCode\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"US\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"isp\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York University\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"lat\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m40.7317\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"lon\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m-73.9885\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"org\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York University\"\u001b[0m\u001b[37m\r\n",
+        "\u001b[37m}\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 19
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **g**: Use the \"jq\" command to print the longitude from the file location.json"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!jq '.lon' ../a1/location.json"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\u001b[0m-73.9885\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **h**: Use the curl command to issue the API call, and then pipe it to a \"jq\" command to print the whole JSON file"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl http://ip-api.com/json | jq ."
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:--  0:00:03 --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   307  100   307    0     0     93      0  0:00:03  0:00:03 --:--:--   138\r\n",
+        "\u001b[37m{\r\n",
+        "  \u001b[0m\u001b[34;1m\"zip\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"10003\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"timezone\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"America/New_York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"status\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"success\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"regionName\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"region\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"NY\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"query\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"216.165.95.79\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"as\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"AS12 New York University\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"city\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"country\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"United States\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"countryCode\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"US\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"isp\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York University\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"lat\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m40.7317\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"lon\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m-73.9885\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"org\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York University\"\u001b[0m\u001b[37m\r\n",
+        "\u001b[37m}\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 22
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **i**: Use the curl command to issue the API call, and then pipe it to a \"jq\" command to print the lon attribute (only)."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl http://ip-api.com/json | jq '.lon'"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   307  100   307    0     0   1765      0 --:--:-- --:--:-- --:--:--  3698\r\n",
+        "\u001b[0m-73.9885\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 23
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **j**: Use the curl command to issue the API call, and then pipe it to a \"jq\" command to print the lon and lat attributes, separated by a comma."
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl http://ip-api.com/json | jq '(.lon | tostring) + \", \" + (.lat | tostring)'"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   307  100   307    0     0   1596      0 --:--:-- --:--:-- --:--:--  3373\r\n",
+        "\u001b[32m\"-73.9885, 40.7317\"\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "### Part 3 (8 pts)\n",
+      "\n",
+      "In this part, you are asked to use the output of the IP-API and call the OpenWeatherMap API. In class, we used the city and region to issue the API call on OpenWeatherMap. You are now asked to modify the call, and use the longitude and latitude (returned from the IP-API) instead of city and region, to issue the corresponding API call to OpenWeatherMap. Look at the documentation at http://openweathermap.org/current\n",
+      "under the \"By geographic coordinates\" title on how to modify the API call to use long/lat coordinates.\n",
+      "\n",
+      "* **a**: Use the jq command to read from the file location.json, and print in the output the new URL"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!jq '\"http://api.openweathermap.org/data/2.5/weather?lat=\"+(.lat|tostring) + \"&lon=\"+(.lon|tostring)' ../a1/location.json "
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\u001b[32m\"http://api.openweathermap.org/data/2.5/weather?lat=40.7317&lon=-73.9885\"\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 2
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **b**: Instead of reading from the file location.json, combine together the curl call to IP-API with the the jq command using pipes, and print in the output the new URL"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl http://ip-api.com/json | jq '\"http://api.openweathermap.org/data/2.5/weather?lat=\"+(.lat | tostring)+\"&lon=\"+(.lon | tostring)'"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   307  100   307    0     0    847      0 --:--:-- --:--:-- --:--:--  1421\r\n",
+        "\u001b[32m\"http://api.openweathermap.org/data/2.5/weather?lat=40.7317&lon=-73.9885\"\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "* **c**: Use the xargs command as an additional pipe to the command in (2.b) to issue directly the API call"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "!curl http://ip-api.com/json | jq '\"http://api.openweathermap.org/data/2.5/weather?lat=\"+(.lat | tostring)+\"&lon=\"+(.lon | tostring)' | xargs curl -0 | jq ."
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   307  100   307    0     0    366      0 --:--:-- --:--:-- --:--:--   420\r",
+        "100   307  100   307    0     0    366      0 --:--:-- --:--:-- --:--:--   420\r\n"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\r\n",
+        "                                 Dload  Upload   Total   Spent    Left  Speed\r\n",
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0"
+       ]
+      },
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "\r",
+        "100   437  100   437    0     0    282      0  0:00:01  0:00:01 --:--:--   322\r\n",
+        "\u001b[37m{\r\n",
+        "  \u001b[0m\u001b[34;1m\"cod\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m200\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"name\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"New York\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"id\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m5128581\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"coord\"\u001b[0m\u001b[37m: \u001b[0m\u001b[37m{\r\n",
+        "    \u001b[0m\u001b[34;1m\"lat\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m40.73\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"lon\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m-73.99\u001b[0m\u001b[37m\r\n",
+        "  \u001b[37m}\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"sys\"\u001b[0m\u001b[37m: \u001b[0m\u001b[37m{\r\n",
+        "    \u001b[0m\u001b[34;1m\"sunset\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m1411598964\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"sunrise\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m1411555565\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"country\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"US\"\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"message\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m0.0439\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"id\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m2120\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"type\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m1\u001b[0m\u001b[37m\r\n",
+        "  \u001b[37m}\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"weather\"\u001b[0m\u001b[37m: \u001b[0m\u001b[37m[\r\n",
+        "    \u001b[37m{\r\n",
+        "      \u001b[0m\u001b[34;1m\"icon\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"04d\"\u001b[0m\u001b[37m,\r\n",
+        "      \u001b[0m\u001b[34;1m\"description\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"broken clouds\"\u001b[0m\u001b[37m,\r\n",
+        "      \u001b[0m\u001b[34;1m\"main\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"Clouds\"\u001b[0m\u001b[37m,\r\n",
+        "      \u001b[0m\u001b[34;1m\"id\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m803\u001b[0m\u001b[37m\r\n",
+        "    \u001b[37m}\u001b[0m\u001b[37m\r\n",
+        "  \u001b[37m]\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"base\"\u001b[0m\u001b[37m: \u001b[0m\u001b[32m\"cmc stations\"\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"main\"\u001b[0m\u001b[37m: \u001b[0m\u001b[37m{\r\n",
+        "    \u001b[0m\u001b[34;1m\"temp_max\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m296.15\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"temp_min\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m293.15\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"humidity\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m60\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"pressure\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m1034\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"temp\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m294.65\u001b[0m\u001b[37m\r\n",
+        "  \u001b[37m}\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"wind\"\u001b[0m\u001b[37m: \u001b[0m\u001b[37m{\r\n",
+        "    \u001b[0m\u001b[34;1m\"deg\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m50\u001b[0m\u001b[37m,\r\n",
+        "    \u001b[0m\u001b[34;1m\"speed\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m7.2\u001b[0m\u001b[37m\r\n",
+        "  \u001b[37m}\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"clouds\"\u001b[0m\u001b[37m: \u001b[0m\u001b[37m{\r\n",
+        "    \u001b[0m\u001b[34;1m\"all\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m75\u001b[0m\u001b[37m\r\n",
+        "  \u001b[37m}\u001b[0m\u001b[37m,\r\n",
+        "  \u001b[0m\u001b[34;1m\"dt\"\u001b[0m\u001b[37m: \u001b[0m\u001b[0m1411588037\u001b[0m\u001b[37m\r\n",
+        "\u001b[37m}\u001b[0m\r\n"
+       ]
+      }
+     ],
+     "prompt_number": 6
+    }
+   ],
+   "metadata": {}
+  }
+ ]
+}
