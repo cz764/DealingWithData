@@ -51,6 +51,14 @@ Vagrant.configure("2") do |config|
     override.vm.network :forwarded_port, host: 3306, guest: 3306
     config.vm.network :private_network, ip: "33.33.33.10"
 
+    # NodeJS
+    override.vm.network :forwarded_port, host: 3000, guest: 3000
+
+    # Google App Engine
+    override.vm.network :forwarded_port, host: 8080, guest: 8080
+    override.vm.network :forwarded_port, host: 8000, guest: 8000
+    override.vm.network :forwarded_port, host: 9080, guest: 9080
+    config.vm.network :public_network, ip: "0.0.0.0"
 
     # MongoDB
     override.vm.network :forwarded_port, host: 27017, guest: 27017
