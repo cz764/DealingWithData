@@ -1,0 +1,3 @@
+LOAD DATA INFILE '/vagrant/ipynb/yelp_phone.csv'  INTO TABLE yelp_phone FIELDS TERMINATED BY ','  ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;
+
+LOAD DATA LOCAL INFILE '/vagrant/ipynb/yelp_phone.csv' INTO TABLE yelp_phone FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';

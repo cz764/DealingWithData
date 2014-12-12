@@ -22,3 +22,10 @@ where YEAR(Birthday) IS NOT NULL
 group by YEAR(Birthday)
 order by YEAR(Birthday);
 
+use yelp;
+
+LOAD DATA LOCAL INFILE '/vagrant/ipynb/yelp_phone.csv'
+INTO TABLE yelp_phone
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"' 
+LINES TERMINATED BY '\n';
